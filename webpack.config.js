@@ -9,6 +9,16 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.scss$/,
+        use: [{
+            loader: "style-loader"
+        }, {
+            loader: "css-loader"
+        }, {
+            loader: "sass-loader"
+        }]
+      },
+      {
         test: /\.(js|jsx)$/,
         exclude: /(node_modules|bower_components)/,
         loader: "babel-loader",
@@ -22,7 +32,11 @@ module.exports = {
         test: /\.tsx?$/,
         use: 'ts-loader',
         exclude: /node_modules/,
-      }
+      },
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: ['file-loader'],
+      },
     ]
   },
   resolve: { extensions: [".ts", ".tsx", "*", ".js", ".jsx"] },

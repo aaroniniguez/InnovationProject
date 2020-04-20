@@ -1,0 +1,198 @@
+
+$card-width: 280px;
+$card-height: 200px;
+$age1cards: 
+    "pottery",
+    "tools",
+    "writing",
+    "archery",
+    "metalworking",
+    "oars",
+    "clothing",
+    "sailing",
+    "thewheel",
+    "agriculture",
+    "domestication",
+    "masonry",
+    "citystates",
+    "codeoflaws",
+    "mysticism"; 
+$age2cards: 
+    "calendar",
+    "mathematics",
+    "construction",
+    "roadbuilding",
+    "currency",
+    "mapmaking",
+    "canalbuilding",
+    "fermenting",
+    "monotheism",
+    "philosophy";
+$age3cards: 
+    "alchemy",
+    "translation", 
+    "engineering",
+    "optics", 
+    "compass",
+    "paper", 
+    "machinery", 
+    "medicine",
+    "education",
+    "feudalism";
+$age4cards:
+    "experimentation", 
+    "printingpress",
+    "colonialism",
+    "gunpowder",
+    "invention",
+    "navigation",
+    "anatomy",
+    "perspective",
+    "enterprise",
+    "reformation";
+$age5cards: 
+    "chemistry", 
+    "physics", 
+    "coal", 
+    "thepiratecode",
+    "banking",
+    "measurement",
+    "statistics",
+    "steamengine",
+    "astronomy",
+    "societies";
+
+$age6cards: 
+    "atomictheory",
+    "encyclopedia",
+    "industrialization",
+    "machinetools",
+    "classification",
+    "metricsystem",
+    "canning",
+    "vaccination",
+    "democracy",
+    "emancipation";
+$age7cards: 
+    "evolution", 
+    "publications",
+    "combustion",
+    "explosives", 
+    "bicycle", 
+    "electricity", 
+    "refrigeration", 
+    "sanitation", 
+    "lighting",
+    "railroad";
+$age8cards:
+    "quantumtheory", 
+    "rocketry",
+    "flight", 
+    "mobility",
+    "corporations",
+    "massmedia",
+    "antibiotics",
+    "skyscrapers",
+    "empiricism",
+    "socialism";
+
+$age9cards:
+    "computers",
+    "genetics",
+    "composites",
+    "fission",
+    "collaboration",
+    "satellites",
+    "ecology",
+    "suburbia",
+    "services",
+    "specialization";
+
+$age10cards: 
+    "bioengineering",
+    "software", 
+    "miniaturization",
+    "robotics",
+    "databases",
+    "selfservice",
+    "globalization",
+    "stemcells",
+    "ai",
+    "theinternet";
+$ages: 
+    $age1cards,
+    $age2cards,
+    $age3cards,
+    $age4cards,
+    $age5cards,
+    $age6cards,
+    $age7cards,
+    $age8cards,
+    $age9cards,
+    $age10cards;
+body, html, #root, .app{
+    height: 100%;
+}
+.app {
+    background-color: #f8f9ff;
+    // background-color: red;
+}
+
+.card {
+    background: url("src/images/Innovation_cards.jpg") no-repeat; 
+    background-size: 4200px;
+    width: 262px;
+    margin: 7px;
+    height: 180px;
+    border-radius: 10px;
+}
+
+.card:hover {
+    opacity: .8;
+    cursor: pointer;
+}
+
+@for $i from 1 through length($ages) {
+    $age: nth($ages, $i);
+
+    @for $y from 1 through length($age) {
+        $card: nth($age, $y);
+        .#{$card} {
+            @extend .card;
+            background-position: (((-1*$card-width)*($y - 1)) - 9px) (-10px + (-1*$card-height)*($i - 1));
+        }
+    }
+}
+
+@font-face {
+    font-family: "Postmates Std";
+    font-weight: 700;
+    font-style: normal;
+    src: local("Postmates Std Bold"), url(https://s3-us-west-1.amazonaws.com/buyer-static.postmates.com/assets/email/postmates-std-bold.woff) format("woff");
+  }
+
+  @font-face {
+    font-family: "Postmates Std";
+    font-weight: 500;
+    font-style: normal;
+    src: local("Postmates Std Medium"), url(https://s3-us-west-1.amazonaws.com/buyer-static.postmates.com/assets/email/postmates-std-medium.woff) format("woff");
+  }
+
+  @font-face {
+    font-family: "Postmates Std";
+    font-weight: 400;
+    font-style: normal;
+    src: local("Postmates Std Regular"), url(https://s3-us-west-1.amazonaws.com/buyer-static.postmates.com/assets/email/postmates-std-regular.woff) format("woff");
+  }
+
+  .prettyFont {
+    margin: 30px 0 60px 0;
+    -webkit-font-smoothing: antialiased;
+    color: #000000;
+    font-family: 'Postmates Std';
+    font-style: normal;
+    font-weight: 50;
+    letter-spacing: -2.6px;
+    line-height: 52px;
+    font-size: 48px;
+  }
