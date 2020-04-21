@@ -5,7 +5,8 @@ import Logo from "./components/Logo"
 import logo from "./images/innovation.png"
 import {getCards} from "./services/apiService";
 import {convertCardName} from "./helper";
-import {Link} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
+import queryString from 'query-string'
 import {
     Container,
     Row,
@@ -13,17 +14,37 @@ import {
 } from "reactstrap"
 
 function App(props) {
+    let location = useLocation();
+    let search = location.search;
+    const values = queryString.parse(search)
+    let icon, searchText;
+
+    function isEmpty(yourObj) {
+        if(Object.keys(yourObj).length === 0) {
+            return true;
+        } else {
+            return false
+        }
+    }
+    if(!isEmpty(values)) {
+        icon = values.icon;
+        searchText = `- cards with a ${icon}`;
+    } else {
+        searchText = "- All Cards"
+    }
+    let searchString = <span className="searchText">{searchText}</span>;
     const [cards, setCards] = React.useState([])
     React.useEffect(() => {
-        getCards((response) => setCards(response.data))
+        getCards(search ,(response) => setCards(response.data))
     }, [])
     return (
         <Container className="app">
             <Row>
                 <Col style={{display:"flex", alignItems:"center"}}>
                     <Logo src={logo}/>
-                    <div className="prettyFont" style={{flex:"1", marginLeft:"30px"}}>
+                    <div className="prettyFont" style={{display: "flex", alignItems: "center", flex:"1", marginLeft:"30px"}}>
                         Innovation Decklist
+                        {searchString}
                     </div>
                 </Col>
             </Row>
@@ -33,7 +54,7 @@ function App(props) {
                     {cards.map((card) => {
                         return (
                             <Link key={card.name} to={`/innovation/cards/`+convertCardName(card.name)}>
-                                <div key={card.name} className={convertCardName(card.name)}></div>
+                                <div key={card.name} className={"cardMainPage "+convertCardName(card.name)}></div>
                             </Link>
                         )
                     })}

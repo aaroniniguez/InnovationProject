@@ -4,7 +4,7 @@ const router = express.Router();
 
 //get all cards
 router.get("/cards", async function(req, res, next) {
-    let cards = await innovationDAO.getAllCards();
+    let cards = await innovationDAO.getAllCards(req.query.icon);
     res.send(cards);
     next();
 })

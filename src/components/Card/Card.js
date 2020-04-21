@@ -2,6 +2,8 @@ import React from 'react';
 import {getCard, getCards} from  "../../services/apiService"
 import { convertCardName } from '../../helper';
 import {CardDescription} from "./CardDescription";
+import CardIcon from "./CardIcon";
+import {Link} from "react-router-dom";
 
 function Card(props) {
     let name = location.pathname.split("/").pop();
@@ -10,7 +12,6 @@ function Card(props) {
     const [loading, setLoading] = React.useState(false)
     React.useEffect(() => {
         getCard(name, (response) => {
-            console.log(response);
             setCard(response.data[0])
             setLoading(true)
         })
@@ -24,30 +25,12 @@ function Card(props) {
                     <CardDescription data={card}/>
                 </div>
             <div style={{marginLeft: "30px"}}>
-                <div style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
-                    <div className="icon crown"></div>
-                    <div>{card.crown}</div>
-                </div>
-                <div style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
-                    <div className="icon lightbulb"></div>
-                    <div>{card.lightbulb}</div>
-                </div>
-                <div style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
-                    <div className="icon leaf"></div>
-                    <div>{card.leaf}</div>
-                </div>
-                <div style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
-                    <div className="icon castle"></div>
-                    <div>{card.castle}</div>
-                </div>
-                <div style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
-                    <div className="icon factory"></div>
-                    <div>{card.factory}</div>
-                </div>
-                <div style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
-                    <div className="icon clock"></div>
-                    <div>{card.clock}</div>
-                </div>
+                <CardIcon icon="crown" count={card.crown}></CardIcon>
+                <CardIcon icon="lightbulb" count={card.lightbulb}></CardIcon>
+                <CardIcon icon="leaf" count={card.leaf}></CardIcon>
+                <CardIcon icon="castle" count={card.castle}></CardIcon>
+                <CardIcon icon="factory" count={card.factory}></CardIcon>
+                <CardIcon icon="clock" count={card.clock}></CardIcon>
             </div>
         </div>
         )

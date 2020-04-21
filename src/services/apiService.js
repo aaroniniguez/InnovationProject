@@ -14,8 +14,8 @@ function useConfig() {
     return config;
 }
 
-export const getCards = (onSuccess, onFail) => {
-    instance.get(`cards`, useConfig())
+export const getCards = (searchParams, onSuccess, onFail) => {
+    instance.get(`cards${searchParams}`, useConfig())
         .then(response => {
             onSuccess && onSuccess(response)
         })

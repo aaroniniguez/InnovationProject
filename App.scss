@@ -147,7 +147,7 @@ body, html,#root, .app{
     border-radius: 10px;
 }
 
-.card:hover {
+.cardMainPage:hover, .icon:hover {
     opacity: .8;
     cursor: pointer;
 }
@@ -224,4 +224,11 @@ body, html,#root, .app{
 
   .clock {
     background-position: -2534px -1215px;
+  }
+
+  .searchText {
+    margin-left: 10px;
+    font-size: 28px;
+    font-style: italic;
+    letter-spacing: -2px;
   }

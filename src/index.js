@@ -6,7 +6,7 @@ import {Card} from "./components/Card"
 ReactDOM.render(
         <BrowserRouter>
           <Switch>
-                <Route exact path = "/innovation">
+                <Route exact path = "/innovation/cards">
                     <App/>
                 </Route>
                 <Route path="/innovation/cards/:cardName">

@@ -7,12 +7,20 @@ class InnovationDAO {
 		this.DB = new database()
 	}
 
-	async getAllCards() {
+	async getAllCards(icon) {
+		//only allow valid icons
+		let validIcons = ["leaf", "castle", "factory", "crown", "clock", "lightbulb", undefined]
+		if(!validIcons.includes(icon))
+			return [] 
+		let search;
+		if(icon)
+			search = ` WHERE ${icon} > 0 `;
 		let query = `
 		SELECT 
 		*
 		FROM
 			Innovation
+		${search}
 		ORDER BY age , color ASC;
 		`;
 		let result = await this.DB.query(query)

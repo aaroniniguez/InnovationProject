@@ -19,6 +19,8 @@
     "nodemon": "^2.0.3",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
+    "query-string": "^6.12.1",
+    "querystring-browser": "^1.0.4",
     "shortid": "^2.2.15"
   }
 }
