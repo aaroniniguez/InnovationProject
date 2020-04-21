@@ -4,6 +4,8 @@ import "../App.scss";
 import Logo from "./components/Logo"
 import logo from "./images/innovation.png"
 import {getCards} from "./services/apiService";
+import {convertCardName} from "./helper";
+import {Link} from "react-router-dom";
 import {
     Container,
     Row,
@@ -15,7 +17,6 @@ function App(props) {
     React.useEffect(() => {
         getCards((response) => setCards(response.data))
     }, [])
-    console.log(cards)
     return (
         <Container className="app">
             <Row>
@@ -27,10 +28,14 @@ function App(props) {
                 </Col>
             </Row>
             <Row>
+                                <div className="crown"></div>
                 <Col style={{display: "flex", flexDirection: "row", flexWrap: "wrap"}}>
                     {cards.map((card) => {
-                        let cardName = card.name.toLowerCase().replace(/ /g, "");
-                        return <div key={card.name} className={cardName}></div>
+                        return (
+                            <Link key={card.name} to={`/innovation/cards/`+convertCardName(card.name)}>
+                                <div key={card.name} className={convertCardName(card.name)}></div>
+                            </Link>
+                        )
                     })}
                 </Col>
             </Row>

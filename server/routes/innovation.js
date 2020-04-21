@@ -8,4 +8,10 @@ router.get("/cards", async function(req, res, next) {
     res.send(cards);
     next();
 })
+
+router.get("/cards/:cardName", async function(req, res, next) {
+    let cardName = req.params.cardName.replace(/\_/g, " ");
+    let cards = await innovationDAO.getCard(cardName)
+    res.send(cards);
+});
 module.exports = router;

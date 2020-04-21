@@ -26,6 +26,18 @@ export const getCards = (onSuccess, onFail) => {
         })
 }
 
+export const getCard = (cardName, onSuccess, onFail) => {
+    instance.get(`cards/${cardName}`, useConfig())
+        .then(response => {
+            onSuccess && onSuccess(response)
+        })
+        .catch((e) => {
+            console.log(e)
+            // window.location.replace(loginPage)
+            onFail && onFail(e)
+        })
+}
+
 export const login = (payload, onSuccess, onFail) => {
     instance.post("login", payload, useConfig())
         .then(response => {

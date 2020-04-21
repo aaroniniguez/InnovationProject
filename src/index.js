@@ -1,4 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App.js";
-ReactDOM.render(<App />, document.getElementById("root"));
+import {BrowserRouter,Route, Switch} from 'react-router-dom';
+import App from "./App"
+import {Card} from "./components/Card"
+ReactDOM.render(
+        <BrowserRouter>
+          <Switch>
+                <Route exact path = "/innovation">
+                    <App/>
+                </Route>
+                <Route path="/innovation/cards/:cardName">
+                    <Card/>
+                </Route>
+            </Switch>
+        </BrowserRouter>,
+    document.getElementById('root')
+  );
+  

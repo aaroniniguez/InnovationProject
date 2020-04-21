@@ -10,21 +10,21 @@ $age1cards:
     "oars",
     "clothing",
     "sailing",
-    "thewheel",
+    "the_wheel",
     "agriculture",
     "domestication",
     "masonry",
-    "citystates",
-    "codeoflaws",
+    "city_states",
+    "code_of_laws",
     "mysticism"; 
 $age2cards: 
     "calendar",
     "mathematics",
     "construction",
-    "roadbuilding",
+    "road_building",
     "currency",
     "mapmaking",
-    "canalbuilding",
+    "canal_building",
     "fermenting",
     "monotheism",
     "philosophy";
@@ -41,7 +41,7 @@ $age3cards:
     "feudalism";
 $age4cards:
     "experimentation", 
-    "printingpress",
+    "printing_press",
     "colonialism",
     "gunpowder",
     "invention",
@@ -54,21 +54,21 @@ $age5cards:
     "chemistry", 
     "physics", 
     "coal", 
-    "thepiratecode",
+    "the_pirate_code",
     "banking",
     "measurement",
     "statistics",
-    "steamengine",
+    "steam_engine",
     "astronomy",
     "societies";
 
 $age6cards: 
-    "atomictheory",
+    "atomic_theory",
     "encyclopedia",
     "industrialization",
-    "machinetools",
+    "machine_tools",
     "classification",
-    "metricsystem",
+    "metric_system",
     "canning",
     "vaccination",
     "democracy",
@@ -85,12 +85,12 @@ $age7cards:
     "lighting",
     "railroad";
 $age8cards:
-    "quantumtheory", 
+    "quantum_theory", 
     "rocketry",
     "flight", 
     "mobility",
     "corporations",
-    "massmedia",
+    "mass_media",
     "antibiotics",
     "skyscrapers",
     "empiricism",
@@ -114,9 +114,9 @@ $age10cards:
     "miniaturization",
     "robotics",
     "databases",
-    "selfservice",
+    "self_service",
     "globalization",
-    "stemcells",
+    "stem_cells",
     "ai",
     "theinternet";
 $ages: 
@@ -130,7 +130,7 @@ $ages:
     $age8cards,
     $age9cards,
     $age10cards;
-body, html, #root, .app{
+body, html,#root, .app{
     height: 100%;
 }
 .app {
@@ -186,7 +186,6 @@ body, html, #root, .app{
   }
 
   .prettyFont {
-    margin: 30px 0 60px 0;
     -webkit-font-smoothing: antialiased;
     color: #000000;
     font-family: 'Postmates Std';
@@ -195,4 +194,34 @@ body, html, #root, .app{
     letter-spacing: -2.6px;
     line-height: 52px;
     font-size: 48px;
+  }
+
+.icon {
+    background: url("src/images/Innovation_cards.jpg") no-repeat; 
+    background-size: 4200px;
+    width: 66px;
+    margin: 7px;
+    height: 66px;
+    }
+  .crown {
+    background-position: -759px -120px;
+  }
+
+  .lightbulb {
+    background-position: -667px -120px;
+  }
+
+  .leaf {
+    background-position: -2159px -120px;
+  }
+  .castle {
+    background-position: -479px -120px;
+  }
+
+  .factory {
+    background-position: -854px -720px;
+  }
+
+  .clock {
+    background-position: -2534px -1215px;
   }

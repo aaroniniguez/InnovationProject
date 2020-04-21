@@ -19,6 +19,12 @@ class InnovationDAO {
 		return result;
 	}
 
+	async getCard(cardName) {
+		let query = `SELECT * FROM Innovation WHERE name="${cardName}"`;
+		let result = await this.DB.query(query)
+		return result;
+	}
+
 	cleanup() {
 		this.DB.disconnect();
 	}
