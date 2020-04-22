@@ -17,7 +17,6 @@ function App(props) {
     let location = useLocation();
     let search = location.search;
     const values = queryString.parse(search)
-    let icon, searchText;
 
     function isEmpty(yourObj) {
         if(Object.keys(yourObj).length === 0) {
@@ -26,7 +25,24 @@ function App(props) {
             return false
         }
     }
-    if(!isEmpty(values)) {
+
+    let icon, searchText, color, age, description;
+    if(isEmpty(values)) {
+        searchText = "- All Cards"
+    }
+    else if(values.description) {
+        description = values.description;
+        searchText = `- cards containing "${description}"`;
+    } 
+    else if(values.age) {
+        age = values.age;
+        searchText = `- cards in age ${age}`;
+    }
+    else if(values.color) {
+        color = values.color;
+        searchText = `- cards that are ${color}`;
+    }
+    else if(values.icon) {
         icon = values.icon;
         searchText = `- cards with a ${icon}`;
     } else {
@@ -40,7 +56,7 @@ function App(props) {
     return (
         <Container className="app">
             <Row>
-                <Col style={{display:"flex", alignItems:"center"}}>
+                <Col style={{margin: "30px", display:"flex", alignItems:"center"}}>
                     <Logo src={logo}/>
                     <div className="prettyFont" style={{display: "flex", alignItems: "center", flex:"1", marginLeft:"30px"}}>
                         Innovation Decklist

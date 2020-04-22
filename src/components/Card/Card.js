@@ -3,7 +3,6 @@ import {getCard, getCards} from  "../../services/apiService"
 import { convertCardName } from '../../helper';
 import {CardDescription} from "./CardDescription";
 import CardIcon from "./CardIcon";
-import {Link} from "react-router-dom";
 
 function Card(props) {
     let name = location.pathname.split("/").pop();
@@ -20,7 +19,7 @@ function Card(props) {
         loading && (
             <div style={{height: "100%", display: "flex", justifyContent:"center", alignItems: "center"}}>
                 <div style={{height:"100%", display: "flex", alignItems:"center", justifyContent: "center", flexDirection: "column"}}>
-                    <div className="prettyFont">{card.name}</div>
+                    <div style={{margin: "20px"}} className="prettyFont">{card.name}</div>
                     <div className={convertCardName(card.name)}></div>
                     <CardDescription data={card}/>
                 </div>
