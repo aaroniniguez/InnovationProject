@@ -47,6 +47,7 @@ module.exports = {
     filename: "bundle.js"
   },
   devServer: {
+allowedHosts: ["boardgamecards.com"],
     open: true,
     host:'0.0.0.0',
     contentBase: path.join(__dirname, "public/"),
