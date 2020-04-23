@@ -50,8 +50,7 @@ const credentials = {
     ca: ca
 };
 
-http.createServer(app).listen(8090);
-//https.createServer(credentials, app).listen(443);
+https.createServer(credentials, app).listen(443);
 
 //let server = app.listen(process.env.SERVER_PORT)
 //	.on("close", message => console.log("close"))

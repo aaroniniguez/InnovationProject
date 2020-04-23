@@ -46,18 +46,6 @@ module.exports = {
     publicPath: "/dist/",
     filename: "bundle.js"
   },
-  devServer: {
-    allowedHosts: ["boardgamecards.com"],
-    open: true,
-    openPage: "innovation/cards",
-    host:'0.0.0.0',
-    contentBase: path.join(__dirname, "public/"),
-    port: process.env.CLIENT_PORT,
-    publicPath: "http://"+process.env.HOST+"/dist/",
-    historyApiFallback: true,
-    // hotOnly: true,
-    // hotOnly: true
-  },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new Dotenv({path: ".env"})
