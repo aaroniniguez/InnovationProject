@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-      "outDir": "./dist/",
+      "outDir": "public/distdist",
       "noImplicitAny": true,
       "target": "es5",
       "jsx": "react",
