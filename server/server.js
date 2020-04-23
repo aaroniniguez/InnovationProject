@@ -35,7 +35,6 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 //serve UI 
-console.log(__dirname+"/../public");
 app.use(express.static(__dirname+"/../public"));
 app.use("/api/innovation", innovationRoutes);
 app.get("/*", function(req, res) {
@@ -43,8 +42,6 @@ app.get("/*", function(req, res) {
 });
 
 app.get('/rest/test.php', asyncHandler(async function(req, res) {
-	console.log(await innovationDAO.getAllCards());
-	console.log("hi")
 	return res.cookie('testing','test').send(`{"live":"success"}`);
 }));
 

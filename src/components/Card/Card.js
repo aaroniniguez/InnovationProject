@@ -6,7 +6,6 @@ import CardIcon from "./CardIcon";
 
 function Card(props) {
     let name = location.pathname.split("/").pop();
-    console.log("aaron",name)
     const [card, setCard] = React.useState([])
     const [loading, setLoading] = React.useState(false)
     React.useEffect(() => {

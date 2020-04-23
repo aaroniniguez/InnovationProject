@@ -23,7 +23,6 @@ export const getCards = (searchParams, onSuccess, onFail) => {
             onSuccess && onSuccess(response)
         })
         .catch((e) => {
-            console.log(e)
             // window.location.replace(loginPage)
             onFail && onFail(e)
         })
@@ -35,7 +34,6 @@ export const getCard = (cardName, onSuccess, onFail) => {
             onSuccess && onSuccess(response)
         })
         .catch((e) => {
-            console.log(e)
             // window.location.replace(loginPage)
             onFail && onFail(e)
         })
