@@ -4,7 +4,6 @@ var dotenv = require('dotenv').config({path: __dirname + '/../.env'});
 var https = require('https');
 var http = require('http');
 var fs = require("fs");
-const innovationDAO = require("./lib/DAO/InnovationDAO");
 const {
 	logger,
 	isEmptyObject,
@@ -37,15 +36,14 @@ app.use(bodyParser.json());
 //serve UI 
 app.use(express.static(__dirname+"/../public"));
 app.use("/api/innovation", innovationRoutes);
-app.get("/*", function(req, res) {
-	res.sendFile(path.join(__dirname, '/../public/index.html'));
-});
-
 app.get('/rest/test.php', asyncHandler(async function(req, res) {
 	return res.cookie('testing','test').send(`{"live":"success"}`);
 }));
-
+app.get("/*", function(req, res) {
+	res.sendFile(path.join(__dirname, '/../public/index.html'));
+});
 if(process.env.ENVIRONMENT != "DEVELOPMENT") {
+
 	// Certificate
 	const privateKey = fs.readFileSync('/etc/letsencrypt/live/boardgamecards.com/privkey.pem', 'utf8');
 	const certificate = fs.readFileSync('/etc/letsencrypt/live/boardgamecards.com/cert.pem', 'utf8');

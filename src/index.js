@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import {BrowserRouter,Route, Switch} from 'react-router-dom';
 import App from "./App"
 import {Card} from "./components/Card"
+import NotFound from "./components/Pages/NotFound"
 ReactDOM.render(
         <BrowserRouter>
           <Switch>
@@ -11,6 +12,9 @@ ReactDOM.render(
                 </Route>
                 <Route path="/innovation/cards/:cardName">
                     <Card/>
+                </Route>
+                <Route path="*">
+                    <NotFound homePage="/innovation/cards" />
                 </Route>
             </Switch>
         </BrowserRouter>,
