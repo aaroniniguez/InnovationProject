@@ -2,6 +2,7 @@ const path = require("path");
 const webpack = require("webpack");
 const Dotenv = require('dotenv-webpack');
 dotenv = require('dotenv').config({path: __dirname + '/.env'});
+const fs = require("fs");
 module.exports = {
   entry: [
       "@babel/polyfill", "./src/index.js"
@@ -47,13 +48,17 @@ module.exports = {
     filename: "bundle.js"
   },
   devServer: {
-allowedHosts: ["boardgamecards.com"],
+    https: true,
+    key: fs.readFileSync('/etc/letsencrypt/live/boardgamecards.com/privkey.pem'),
+    cert: fs.readFileSync('/etc/letsencrypt/live/boardgamecards.com/cert.pem'),
+    ca: fs.readFileSync('/etc/letsencrypt/live/boardgamecards.com/chain.pem'),
+    allowedHosts: ["boardgamecards.com"],
     open: true,
     openPage: "innovation/cards",
     host:'0.0.0.0',
     contentBase: path.join(__dirname, "public/"),
     port: process.env.CLIENT_PORT,
-    publicPath: "http://"+process.env.HOST+"/dist/",
+    publicPath: "https://"+process.env.HOST+"/dist/",
     historyApiFallback: true,
     // hotOnly: true,
     // hotOnly: true
