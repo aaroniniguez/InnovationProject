@@ -14,12 +14,14 @@ console.log = logger;
 var bodyParser = require('body-parser');
 const innovationRoutes = require("./routes/innovation")
 let app = express();
-app.all('*', (req, res, next) => {
-    if(req.protocol === 'https')
-        next();
-    else
-        return res.redirect("https://" + req.hostname + req.originalUrl);
-});
+if(process.env.ENVIRONMENT != "DEVELOPMENT") {
+	app.all('*', (req, res, next) => {
+		if(req.protocol === 'https')
+			next();
+		else
+			return res.redirect("https://" + req.hostname + req.originalUrl);
+	});
+}
 
 app.response.savedSend = app.response.send;
 app.response.send = function(data) {
@@ -46,15 +48,18 @@ app.get('/rest/test.php', asyncHandler(async function(req, res) {
 	return res.cookie('testing','test').send(`{"live":"success"}`);
 }));
 
-// Certificate
-const privateKey = fs.readFileSync('/etc/letsencrypt/live/boardgamecards.com/privkey.pem', 'utf8');
-const certificate = fs.readFileSync('/etc/letsencrypt/live/boardgamecards.com/cert.pem', 'utf8');
-const ca = fs.readFileSync('/etc/letsencrypt/live/boardgamecards.com/fullchain.pem', 'utf8');
-const credentials = {
-    key: privateKey,
-    cert: certificate,
-    ca: ca
-};
-
-https.createServer(credentials, app).listen(443);
-http.createServer(app).listen(80);
+if(process.env.ENVIRONMENT != "DEVELOPMENT") {
+	// Certificate
+	const privateKey = fs.readFileSync('/etc/letsencrypt/live/boardgamecards.com/privkey.pem', 'utf8');
+	const certificate = fs.readFileSync('/etc/letsencrypt/live/boardgamecards.com/cert.pem', 'utf8');
+	const ca = fs.readFileSync('/etc/letsencrypt/live/boardgamecards.com/fullchain.pem', 'utf8');
+	const credentials = {
+		key: privateKey,
+		cert: certificate,
+		ca: ca
+	};
+	https.createServer(credentials, app).listen(443);
+	http.createServer(app).listen(80);
+} else {
+	http.createServer(app).listen(process.env.SERVER_PORT);
+}

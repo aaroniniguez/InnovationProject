@@ -1,6 +1,12 @@
 import axios from "axios";
+let baseURL;
+if(process.env.ENVIRONMENT === "DEVELOPMENT") {
+    baseURL = `http://${process.env.HOST}:${process.env.SERVER_PORT}/api/innovation`;
+} else {
+    baseURL = `https://${process.env.HOST}/api/innovation`;
+}
 const instance = axios.create({
-  baseURL: `https://${process.env.HOST}/api/innovation`,
+  baseURL,
   timeout: 1000,
 });
 

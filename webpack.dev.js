@@ -36,7 +36,7 @@ module.exports = {
         exclude: /node_modules/,
       },
       {
-        test: /\.(png|svg|jpg|gif)$/,
+        test: /\.(png|svg|jpg|gif|ico)$/,
         use: ['file-loader'],
       },
     ]
@@ -48,10 +48,6 @@ module.exports = {
     filename: "bundle.js"
   },
   devServer: {
-    https: true,
-    key: fs.readFileSync('/etc/letsencrypt/live/boardgamecards.com/privkey.pem'),
-    cert: fs.readFileSync('/etc/letsencrypt/live/boardgamecards.com/cert.pem'),
-    ca: fs.readFileSync('/etc/letsencrypt/live/boardgamecards.com/chain.pem'),
     allowedHosts: ["boardgamecards.com"],
     open: true,
     openPage: "innovation/cards",
