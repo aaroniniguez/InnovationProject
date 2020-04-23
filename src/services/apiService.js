@@ -1,6 +1,6 @@
 import axios from "axios";
 const instance = axios.create({
-  baseURL: `http://${process.env.HOST}:${process.env.SERVER_PORT}/api/innovation`,
+  baseURL: `https://${process.env.HOST}/api/innovation`,
   timeout: 1000,
 });
 
