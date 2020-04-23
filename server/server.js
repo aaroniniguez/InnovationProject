@@ -14,6 +14,12 @@ console.log = logger;
 var bodyParser = require('body-parser');
 const innovationRoutes = require("./routes/innovation")
 let app = express();
+app.all('*', (req, res, next) => {
+    if(req.protocol === 'https')
+        next();
+    else
+        return res.redirect("https://" + req.hostname + req.originalUrl);
+});
 
 app.response.savedSend = app.response.send;
 app.response.send = function(data) {
@@ -51,3 +57,4 @@ const credentials = {
 };
 
 https.createServer(credentials, app).listen(443);
+http.createServer(app).listen(80);
