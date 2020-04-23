@@ -51,9 +51,3 @@ const credentials = {
 };
 
 https.createServer(credentials, app).listen(443);
-
-//let server = app.listen(process.env.SERVER_PORT)
-//	.on("close", message => console.log("close"))
-//	.on("connection", message => console.log("app now connected"))
-//	.on("error", error => console.log("error", error))
-//	.on("listening", error => console.log(`listening at http://${process.env.HOST}:${process.env.SERVER_PORT}`))

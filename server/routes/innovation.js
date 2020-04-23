@@ -14,7 +14,6 @@ router.use(function (req, res, next) {
 	next();
 });
 router.use(function(req, res, next) {
-	res.header("Access-Control-Allow-Origin", `http://${process.env.NAMED_HOST}:${process.env.SERVER_PORT}`)
 	res.header("Access-Control-Allow-Origin", `http://${process.env.HOST}:${process.env.SERVER_PORT}`)
 	res.header("Access-Control-Allow-Credentials", true)
 	res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
