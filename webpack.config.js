@@ -48,6 +48,7 @@ module.exports = {
   },
   devServer: {
     open: true,
+    openPage: "innovation/cards",
     host:'0.0.0.0',
     contentBase: path.join(__dirname, "public/"),
     port: process.env.CLIENT_PORT,
