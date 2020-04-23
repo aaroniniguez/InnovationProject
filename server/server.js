@@ -1,8 +1,8 @@
 const express = require('express'); 
+const path = require('path');
 var dotenv = require('dotenv').config({path: __dirname + '/../.env'});
 const innovationDAO = require("./lib/DAO/InnovationDAO");
 const {
-
 	logger,
 	isEmptyObject,
 	asyncHandler
@@ -10,16 +10,8 @@ const {
 console.log = logger;
 var bodyParser = require('body-parser');
 const innovationRoutes = require("./routes/innovation")
-
 let app = express();
-app.use(function(req, res, next) {
-	res.header("Access-Control-Allow-Origin", `http://${process.env.HOST}`)
-	res.header("Access-Control-Allow-Origin", `http://${process.env.NAMED_HOST}`)
-	res.header("Access-Control-Allow-Credentials", true)
-	res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
-	res.header("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
-	next();
-})
+
 app.response.savedSend = app.response.send;
 app.response.send = function(data) {
 	console.log("RESPONSE "+ data);	
@@ -30,23 +22,18 @@ app.use(bodyParser.urlencoded({
 	 extended: true 
 }));
 app.use(bodyParser.json());
-app.use(function (req, res, next) {
-	res.type("json");
-	if(isEmptyObject(req.body))
-		console.log(req.method +" "+ req.url);
-	else
-		console.log(req.method +" "+ req.url, req.body);
-	next();
+
+//serve UI 
+console.log(__dirname+"/../public");
+app.use(express.static(__dirname+"/../public"));
+app.use("/api/innovation", innovationRoutes);
+app.get("/*", function(req, res) {
+	res.sendFile(path.join(__dirname, '/../public/index.html'));
 });
 
-app.use("/innovation", innovationRoutes);
-app.get('/test.php', asyncHandler(async function(req, res) {
-	//Get Zone id
+app.get('/rest/test.php', asyncHandler(async function(req, res) {
 	console.log(await innovationDAO.getAllCards());
 	console.log("hi")
-	// db.get("posts")
-	// 	.push({id: shortid.generate(), title: "lowdb is awesome"})
-	// 	.write()
 	return res.cookie('testing','test').send(`{"live":"success"}`);
 }));
 

@@ -6,7 +6,7 @@ module.exports = {
   entry: [
       "@babel/polyfill", "./src/index.js"
   ],
-  mode: "development",
+  mode: "production",
   module: {
     rules: [
       {
@@ -42,12 +42,12 @@ module.exports = {
   },
   resolve: { extensions: [".ts", ".tsx", "*", ".js", ".jsx"] },
   output: {
-    path: path.resolve(__dirname, "dist/"),
+    path: path.resolve(__dirname, "public/dist/"),
     publicPath: "/dist/",
     filename: "bundle.js"
   },
   devServer: {
-allowedHosts: ["boardgamecards.com"],
+    allowedHosts: ["boardgamecards.com"],
     open: true,
     openPage: "innovation/cards",
     host:'0.0.0.0',
