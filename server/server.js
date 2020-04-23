@@ -1,5 +1,8 @@
 const express = require('express'); 
 var dotenv = require('dotenv').config({path: __dirname + '/../.env'});
+var https = require('https');
+var http = require('http');
+var fs = require("fs");
 const innovationDAO = require("./lib/DAO/InnovationDAO");
 const {
 
@@ -50,8 +53,21 @@ app.get('/test.php', asyncHandler(async function(req, res) {
 	return res.cookie('testing','test').send(`{"live":"success"}`);
 }));
 
-let server = app.listen(process.env.SERVER_PORT)
-	.on("close", message => console.log("close"))
-	.on("connection", message => console.log("app now connected"))
-	.on("error", error => console.log("error", error))
-	.on("listening", error => console.log(`listening at http://${process.env.HOST}:${process.env.SERVER_PORT}`))
+// Certificate
+const privateKey = fs.readFileSync('/etc/letsencrypt/live/boardgamecards.com/privkey.pem', 'utf8');
+const certificate = fs.readFileSync('/etc/letsencrypt/live/boardgamecards.com/cert.pem', 'utf8');
+const ca = fs.readFileSync('/etc/letsencrypt/live/boardgamecards.com/fullchain.pem', 'utf8');
+const credentials = {
+    key: privateKey,
+    cert: certificate,
+    ca: ca
+};
+
+http.createServer(app).listen(8090);
+//https.createServer(credentials, app).listen(443);
+
+//let server = app.listen(process.env.SERVER_PORT)
+//	.on("close", message => console.log("close"))
+//	.on("connection", message => console.log("app now connected"))
+//	.on("error", error => console.log("error", error))
+//	.on("listening", error => console.log(`listening at http://${process.env.HOST}:${process.env.SERVER_PORT}`))
