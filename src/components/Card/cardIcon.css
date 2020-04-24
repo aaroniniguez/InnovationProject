@@ -1,0 +1,10 @@
+.cardIconContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cardIconLink {
+    margin-left: 10px;
+    text-decoration: underline;
+}
