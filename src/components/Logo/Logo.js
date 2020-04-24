@@ -3,11 +3,11 @@ import "./Logo.css";
 import {Link} from "react-router-dom";
 
 function Logo(props) {
-    const {src} = props; 
+    const {src, alt} = props; 
     return (
         <div>
             <a href="/innovation/cards">
-                <img className="logoImage"  src={src}></img>
+                <img className="logoImage"  src={src} alt={alt}></img>
             </a>
         </div>
     );

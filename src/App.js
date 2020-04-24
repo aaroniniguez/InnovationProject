@@ -58,7 +58,7 @@ function App(props) {
         <Container className="app">
             <Row>
                 <Col style={{margin: "30px", display:"flex", alignItems:"center"}}>
-                    <Logo src={logo}/>
+                    <Logo src={logo} alt={"Innovation 3rd Edition Card Game Logo"}/>
                     <div className="prettyFont" style={{display: "flex", alignItems: "center", flex:"1", marginLeft:"30px"}}>
                         Innovation Decklist
                         {searchString}
