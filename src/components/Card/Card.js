@@ -1,5 +1,5 @@
 import React from 'react';
-import {getCard, getCards} from  "../../services/apiService"
+import {getCard} from  "../../services/apiService"
 import { convertCardName } from '../../helper';
 import {CardDescription} from "./CardDescription";
 import CardIcon from "./CardIcon";
@@ -10,8 +10,10 @@ function Card(props) {
     const [loading, setLoading] = React.useState(false)
     React.useEffect(() => {
         getCard(name, (response) => {
-            setCard(response.data[0])
+            let card = response.data[0];
+            setCard(card)
             setLoading(true)
+            document.title = `Innovation Cards - ${convertCardName(card.name)}`;
         })
     }, []);
     return (

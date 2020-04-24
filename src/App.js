@@ -52,6 +52,7 @@ function App(props) {
     const [cards, setCards] = React.useState([])
     React.useEffect(() => {
         getCards(search ,(response) => setCards(response.data))
+        document.title = `Innovation Cards ${searchText}`;
     }, [])
     return (
         <Container className="app">
